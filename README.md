@@ -1,129 +1,68 @@
 # Prosjektbeskrivelse og  dokumentasjon
 
 ##  Prosjekttittel
-**Tittel på prosjektet**
+**Blackjack**
 
 ---
 
-## 1. Prosjektidé og problemstilling
+## 1. Prosjektidé 
 
 ### Beskrivelse
-Beskriv hva du skal lage. Hva applikasjonen gjør (Beskriv funksjonaliteten til web-appen/nettstedet).
+Prosjektet er et fullt fungerende Blackajack spill. Det består av et design som ser ut som et grønt casinobord, og en Javascript i bakgrunnen som styrer alt som skjer. Spillet holder styr på pengende du satser, deler ut tilfeldige kort, regner ut poengsummer og styrer dealeren automatisk etter de ekte reglene i blackjack. Koden lagrer pengene dine i nettleseren etter resultatet av runden. 
 
-- Hva er prosjektet ditt?
+### Funksjonalitet
+- Kortstokksystem: Generer en komplett kortstokk på 52 kort
+- Spill-logikk: Applikasjonen berergner automatisk poengsum for spiller og dealer, og håndterer den spesielle regelen for Ess(som kan være 1 eller 11)
+- Innsatssystem: Brukeren kan satse virtuelle penger før hver runde
+- En AI-logikk styrer dealeren, som må trekke kort til de har minst 17 poeng
+- Resultathåndtering: Systemet kårer en vinner (Spiller, Dealer eller Uavgjort) og oppdaterer saldoen umiddelbart.
 
-## Hva skal jeg gjøre på Eksamensdagen
 
-- Beskriv det du har planlagt å gjøre med ord 
-- Lag et godt og detaljert Kanban-board (github-projects) som du viser for sensor. Legg inn link her
-
----
-## 2. Systembeskrivelse
-
-**Formål med applikasjonen:**\
-*Forklar hva du ønsket å oppnå med prosjektet.*
-
-**Brukerflyt:**\
-*Beskriv hvordan brukeren bruker løsningen -- fra startside til lagring
-av data.*
+**Brukerflyt:**
+- Oppstart: Når brukeren åpner siden, hentes saldoen deres fra nettleserens minne (LocalStorage). Hvis det er første gang de spiller, starter de med 1000kr
+- Innsats: Brukeren velger hvor mye de vil satse (10, 50 eller 100kr) ved å trykke på innsatsknappene. Saldoen og valgt innsats oppdateres visuelt.
+- Utdeling: Ved klikk på "Start runden", låses innsatsen, og to kort deles ut til både spiller og dealer. Dealerens ene kort forblir skjult for å skape spenning.
+- Spillvalg: Brukeren kan velge mellom å trekke et nytt kort for å komme nærmere 21 (Hit) eller beholde nåverende pengsum og la dealeren spille (Stand).
+- Avgjørelse: Når runden er ferdig, avslører dealeren sitt skjulte kort og trekker eventuelt flere. Systemet sammenligner poengsummene.
+- Lagring: Ved seier legges gevinsten til saldoen og ved tap trekkes innsatsen. Den nye saldoen lagres automatisk i LocalStorage, slik at progresjonen ikke går tapt hvis brukeren lukker nettleseren. 
 
 **Teknologier brukt:**
 
--   Python / Flask\
--   MariaDB\
--   HTML / CSS / JS\
--   (valgfritt) Docker / Nginx / Gunicorn / Waitress osv.
+- HTML, CSS og JS
 
 ------------------------------------------------------------------------
 
-## 3. Server-, infrastruktur- og nettverksoppsett
+## 3. Prosjektstyring -- GitHub Projects (Kanban)
 
-### Servermiljø
-
-*F.eks.: Ubuntu VM, Docker, fysisk server.*
-
-### Nettverksoppsett
-
--   Nettverksdiagram
--   IP-adresser\
--   Porter\
--   Brannmurregler
-
-Eksempel:
-
-    Klient → Waitress → MariaDB
-
-### Tjenestekonfigurasjon
-
--   systemctl / Supervisor\
--   Filrettigheter\
--   Miljøvariabler
+-  Opprette HTML-skjelett
+-  Designe casinoboard med CSS Flexbox
+-  Genere en komplett kortstokk på 52 kort i javascript
+-  Algoritme for tilfeldig stokking og utdeling av kort
+-  Poengberegning og dynamisk Ess-logikk
+-  Koble opp innsatsknapper og sjekke saldo-dekning
+-  Programmere automatisk dealer-AI og kåre en vinner
+-  Lagre og hente saldo permanent med localStorage
+-  Slutt-testing og feilsøking
 
 ------------------------------------------------------------------------
 
-## 4. Prosjektstyring -- GitHub Projects (Kanban)
+## 4. Programstruktur
 
--   To Do / In Progress / Done\
--   Issues\
--   Skjermbilde (valgfritt)
-
-Refleksjon: Hvordan hjalp Kanban arbeidet?
-
-------------------------------------------------------------------------
-
-## 5. Databasebeskrivelse
-
-**Databasenavn:**
-
-**Tabeller:**\
-\| Tabell \| Felt \| Datatype \| Beskrivelse \|
-\|--------\|-------\|-----------\|--------------\| \| customers \| id \|
-INT \| Primærnøkkel \| \| customers \| name \| VARCHAR(255) \| Navn \|
-\| customers \| address \| VARCHAR(255) \| Adresse \|
-
-**SQL-eksempel:**
-
-``` sql
-CREATE TABLE customers (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255),
-  address VARCHAR(255)
-);
-```
+    Blackjack/
+     ├── index.html
+     ├── style.css
+     ├── script.js
+     └── README.md
 
 ------------------------------------------------------------------------
 
-## 6. Programstruktur
+## 5. Kodeforklaring
 
-    projectnavn/
-     ├── app.py
-     ├── templates/
-     ├── static/
-     └── .env
-
-Databasestrøm:
-
-    HTML → Flask → MariaDB → Flask → HTML-tabell
+Forklar unksjoner (kort).
 
 ------------------------------------------------------------------------
 
-## 7. Kodeforklaring
-
-Forklar ruter og funksjoner (kort).
-
-------------------------------------------------------------------------
-
-## 8. Sikkerhet og pålitelighet
-
--   .env\
--   Miljøvariabler\
--   Parameteriserte spørringer\
--   Validering\
--   Feilhåndtering
-
-------------------------------------------------------------------------
-
-## 9. Feilsøking og testing
+## 6. Feilsøking og testing
 
 -   Typiske feil\
 -   Hvordan du løste dem\
@@ -131,7 +70,7 @@ Forklar ruter og funksjoner (kort).
 
 ------------------------------------------------------------------------
 
-## 10. Konklusjon og refleksjon
+## 7. Konklusjon og refleksjon
 
 -   Hva lærte du?\
 -   Hva fungerte bra?\
@@ -140,7 +79,7 @@ Forklar ruter og funksjoner (kort).
 
 ------------------------------------------------------------------------
 
-## 11. Kildeliste
+## 8. Kildeliste
 
 -   w3schools\
 -   flask.palletsprojects.com
