@@ -3,11 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blackjack</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Blackjack Casino</h1>
+        <div id="saldo-boks">
+        <p>Saldo: <span id="chips">1000</span>kr</p>
+        </div>
+    </header>
+
+    <main id="spillebord">
+        
+        
+        <section id="dealer-seksjon" class="spiller-sone">
+            <h2>Dealer (Sum: <span id="dealer-sum">0</span>)</h2>
+            
+            <div id="dealer-kort-container" class="kort-rekke"></div>
+        </section>
+
+       
+        <section id="spiller-seksjon" class="spiller-sone">
+            <h2>Spiller (Sum: <span id="spiller-sum">0</span>)</h2>
+
+            <div id="spiller-kort-container" class="kort-rekke"></div>
+        </section>
+
+        <section id="kontroll-panel">
+            
+            <div id="innsats-status">
+                <p>Nåværende innsats: <span id="aktiv-innsats">0</span> kr</p>
+            </div>
+
+            <div class="knapp-gruppe">
+                <button id="btn-sats-10" class="btn-sats">Sats 10 kr</button>
+                <button id="btn-sats-50" class="btn-sats">Sats 50 kr</button>
+                <button id="btn-sats-100" class="btn-sats">Sats 100 kr</button>
+            </div>
+
+            <div class="knapp-gruppe">
+                <button id="btn-hit" class="btn-spill" disabled>Nytt kort (Hit)</button>
+                <button id="btn-stand" class="btn-spill" disabled>Stå (Stand)</button>
+                <button id="btn-ny-runde" class="btn-spill">Start runden</button>
+            </div>
+                    
+        </section>
+
+    </main>
+
     
 </body>
 <script src="script.js"></script>
