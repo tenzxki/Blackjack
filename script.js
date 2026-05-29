@@ -80,7 +80,7 @@ function beregnPoeng(hånd) {
 }
 
 
-function OppdaterSkjerm() {
+function OppdaterSkjerm(visHeleDealerHånd = false) {
     spillerKortContainer.innerHTML = "";
     dealerKortContainer.innerHTML = "";
 
@@ -89,30 +89,105 @@ function OppdaterSkjerm() {
     }
 
     for (let i = 0; i < dealerHånd.length; i++) {
-        dealerKortContainer.innerHTML += `<div class = "kort">${dealerHånd[i].farge} ${dealerHånd[i].navn}</div>`;
+       if (i === 1 && !visHeleDealerHånd) {
+        dealerKortContainer.innerHTML += `<div class = "kort bakside">?</div>`;
+       } else {
+        dealerKortContainer.innerHTML += `<div class="kort">${dealerHånd[i].farge} ${dealerHånd[i].navn}</div>`;
+       }
     }
 
     spillerSumTekst.innerText = beregnPoeng(spillerHånd);
-    dealerSumTekst.innerText = beregnPoeng(dealerHånd);
+    
+    if (visHeleDealerHånd) {
+        dealerSumTekst.innerText = beregnPoeng(dealerHånd);
+    } else {
+        dealerSumTekst.innerText = dealerHånd[0].poeng;
+    }
 }
 
-btnNyRunde.onclick = function() {
+
+function startRunde() {
+    
     spillerHånd = [];
     dealerHånd = [];
+
     lagKortstokk();
     stokkKortstokk();
+
     delUtStartKort();
+
+    OppdaterSkjerm();
 
     btnNyRunde.style.display = "none";
     btnHit.style.display = "inline-block";
     btnStand.style.display = "inline-block";
-
-    OppdaterSkjerm();
-    
 }
 
 btnHit.style.display = "none";
 btnStand.style.display = "none";
+
+function hit() {
+    spillerHånd.push(kortstokk.pop());
+    OppdaterSkjerm(false);
+
+    let poeng = beregnPoeng(spillerHånd)
+
+    if (poeng > 21) {
+       setTimeout(() => {
+            alert("Bust! Du tapte.");
+            avsluttRunde();
+        }, 500);
+    } else if (poeng === 21) {
+        setTimeout(() => {
+           alert("21! Dealerens tur");
+           stand(); 
+        }, 500);
+    }
+}
+
+function avsluttRunde() {
+    btnNyRunde.style.display = "inline-block";
+    btnHit.style.display = "none";
+    btnStand.style.display = "none";
+}
+
+
+
+function stand() {
+    btnHit.style.display = "none";
+    btnStand.style.display = "none";
+
+    OppdaterSkjerm(true)
+
+    while (beregnPoeng(dealerHånd) < 17) {
+        dealerHånd.push(kortstokk.pop());
+        OppdaterSkjerm(true);
+    }
+
+    avgjorVinner();
+
+}
+
+function avgjorVinner() {
+    let spillerPoeng = beregnPoeng(spillerHånd);
+    let dealerPoeng = beregnPoeng(dealerHånd);
+    let melding = "";
+
+    if (dealerPoeng > 21) {
+        melding = "Dealer bustet! Du vant!";
+    } else if (spillerPoeng > dealerPoeng) {
+        melding = "Du har flere poeng enn dealer. Du vant!";
+    } else if (spillerPoeng < dealerPoeng) {
+        melding = "Dealer har flere poeng. Du tapte.";
+    } else {
+        melding = "Det ble uavgjort.";
+    }
+
+    setTimeout(function() {
+        alert(melding + "Spiller: " + spillerPoeng + " | Dealer: " + dealerPoeng);
+        avsluttRunde();
+    }, 600);
+}
 
 
 
