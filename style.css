@@ -1,0 +1,115 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a4a1a; 
+    color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+#saldo-boks {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #ff0000; 
+}
+
+#spillebord {
+    width: 90%;
+    max-width: 800px;
+    background-color: #246b24;
+    padding: 30px;
+}
+
+.spiller-sone {
+    margin-bottom: 30px;
+    min-height: 150px;
+}
+
+.kort-rekke {
+    display: flex;
+    gap: 10px;
+    min-height: 120px;
+    justify-content: center;
+}
+
+.kort {
+    background-color: white;
+    color: black;
+    width: 80px;
+    height: 120px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    border: 1px solid #ccc;
+}
+
+.bakside {
+    background-color: #c0392b; 
+}
+
+
+#kontroll-panel {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.knapp-gruppe {
+    margin: 15px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    transition: 0.2s;
+}
+
+
+#btn-hit {
+    background-color: #2980b9; color: white;
+ }
+
+
+#btn-stand {
+    background-color: #e67e22; color: white;
+ }
+
+
+#btn-ny-runde { 
+    background-color: #27ae60; color: white; font-weight: bold; 
+}
+
+
+#btn-reset-saldo { 
+    background-color: #7f8c8d; color: white; 
+}
+
+.btn-sats {
+    background-color: #ffd700;
+    color: black;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+button:active {
+    transform: scale(0.95);
+}

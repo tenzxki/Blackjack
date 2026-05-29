@@ -37,15 +37,16 @@
             </div>
 
             <div class="knapp-gruppe">
-                <button id="btn-sats-10" class="btn-sats">Sats 10 kr</button>
-                <button id="btn-sats-50" class="btn-sats">Sats 50 kr</button>
-                <button id="btn-sats-100" class="btn-sats">Sats 100 kr</button>
+                <button id="btn-sats-10"  onclick="settInnsats(10)">Sats 10 kr</button>
+                <button id="btn-sats-50"  onclick="settInnsats(50)">Sats 50 kr</button>
+                <button id="btn-sats-100" onclick="settInnsats(100)">Sats 100 kr</button>
             </div>
 
             <div class="knapp-gruppe">
                 <button id="btn-hit" onclick="hit()">Nytt kort (Hit)</button>
                 <button id="btn-stand" onclick="stand()">Stå (Stand)</button>
                 <button id="btn-ny-runde" onclick="startRunde()">Start runden</button>
+                <button id="btn-reset-saldo" onclick="nullstillSaldo()">Gå i banken (Få 1000 kr)</button>
             </div>
 
         </section>

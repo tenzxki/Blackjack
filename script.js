@@ -1,6 +1,8 @@
+
 let kortstokk = [];
 let spillerHånd = [];
 let dealerHånd = [];
+let aktivInnsats = 0;
 
 const dealerKortContainer = document.getElementById("dealer-kort-container");
 const spillerKortContainer = document.getElementById("spiller-kort-container");
@@ -14,10 +16,18 @@ const btnHit = document.getElementById("btn-hit");
 const btnStand = document.getElementById("btn-stand");
 const btnNyRunde = document.getElementById("btn-ny-runde");
 
+let saldo = parseInt(localStorage.getItem("blackjack_saldo")) || 1000;
+saldoTekst.innerText = saldo;
+
+btnHit.style.display = "none";
+btnStand.style.display = "none";
+
+
 
 function lagKortstokk() {
     const farger = ["Hjerter", "Ruter", "Spar", "Kløver"];
     const verdier = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+    kortstokk = [];
 
     for (let i = 0; i < farger.length; i++) {
         for (let j = 0; j < verdier.length; j++) {
@@ -105,17 +115,38 @@ function OppdaterSkjerm(visHeleDealerHånd = false) {
     }
 }
 
+function settInnsats(belop) {
+    if (belop > saldo) {
+        alert ("Du har ikke nok chips til å satse så mye!");
+        return;
+    }
+
+    aktivInnsats = belop;
+    innsatsTekst.innerText = aktivInnsats
+}
+
+
+function oppdaterSaldoVisning() {
+    saldoTekst.innerText = saldo;
+    localStorage.setItem("blackjack_saldo", saldo);
+}
+
 
 function startRunde() {
+
+    if (aktivInnsats === 0) {
+        alert ("Du må velge en innsats før du kan starte!");
+        return;
+    }
+    saldo -= aktivInnsats;
+    oppdaterSaldoVisning();
     
     spillerHånd = [];
     dealerHånd = [];
 
     lagKortstokk();
     stokkKortstokk();
-
     delUtStartKort();
-
     OppdaterSkjerm();
 
     btnNyRunde.style.display = "none";
@@ -123,8 +154,8 @@ function startRunde() {
     btnStand.style.display = "inline-block";
 }
 
-btnHit.style.display = "none";
-btnStand.style.display = "none";
+
+
 
 function hit() {
     spillerHånd.push(kortstokk.pop());
@@ -175,13 +206,21 @@ function avgjorVinner() {
 
     if (dealerPoeng > 21) {
         melding = "Dealer bustet! Du vant!";
+        saldo += (aktivInnsats * 2);
     } else if (spillerPoeng > dealerPoeng) {
         melding = "Du har flere poeng enn dealer. Du vant!";
+        saldo += (aktivInnsats * 2);
     } else if (spillerPoeng < dealerPoeng) {
         melding = "Dealer har flere poeng. Du tapte.";
     } else {
         melding = "Det ble uavgjort.";
+        saldo += aktivInnsats;
     }
+
+    aktivInnsats = 0;
+    innsatsTekst.innerText = 0;
+
+    oppdaterSaldoVisning();
 
     setTimeout(function() {
         alert(melding + "Spiller: " + spillerPoeng + " | Dealer: " + dealerPoeng);
@@ -189,8 +228,15 @@ function avgjorVinner() {
     }, 600);
 }
 
-
-
+function nullstillSaldo() {
+    if (saldo === 0) {
+        saldo = 1000;
+        oppdaterSaldoVisning();
+        alert("Banken har gitt deg 1000 nye chips. Lykke til!");
+    } else {
+        alert("Du har fortsatt penger! Kom tilbake når du er blakk.");
+    }
+}
 
 
 
