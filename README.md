@@ -176,7 +176,7 @@ Det mest tidkrevende var å teste ess-logikken. Siden det er vanskelig å få ak
 
 ## 7. Konklusjon og refleksjon
 
-- Det viktigste jeg lærte var nok hvordan de ulike delene av koden henger sammen. Løkker var noe jeg hadde lært om i teorien, men jeg skjønte aldri helt poenget med dem før jeg faktisk trengte dem. Da jeg skulle lage 52 kort og innså at jeg kunne bruke en for-løkke til å gjøre hele jobben på noen linjer i stedet for å skrive hvert kort manuelt, ga det endelig mening.
+Det viktigste jeg lærte var nok hvordan de ulike delene av koden henger sammen. Løkker var noe jeg hadde lært om i teorien, men jeg skjønte aldri helt poenget med dem før jeg faktisk trengte dem. Da jeg skulle lage 52 kort og innså at jeg kunne bruke en for-løkke til å gjøre hele jobben på noen linjer i stedet for å skrive hvert kort manuelt, ga det endelig mening.
 
 Jeg lærte også mye om while-løkker underveis. Jeg brukte dem to steder som begge var ganske viktige for at spillet skulle fungere skikkelig. Det ene var å la dealeren automatisk trekke kort til han hadde nok poeng, og det andre var å håndtere ess-problemet. 
 
@@ -184,22 +184,21 @@ Jeg fikk også lært litt om localStorage. Det er ganske simpelt å bruke. Du la
 
 
 
--   Saldosystemet ble jeg ganske fornøyd med. At spillet husker pengene dine selv om du lukker siden, takket være localStorage, gjør at det føles mer som et ordentlig spill.
-
-
+Saldosystemet ble jeg ganske fornøyd med. At spillet husker pengene dine selv om du lukker siden, takket være localStorage, gjør at det føles mer som et ordentlig spill.
 Jeg er også fornøyd med hvordan jeg styrte knappene. At Hit og Stand forsvinner når det ikke er din tur, og at Ny runde-knappen dukker opp først når runden er over, gjør at det ikke er mulig å trykke på feil ting midt i spillet. Det tok litt tid å få riktig, men det ble som jeg ville ha det.
 
 
--   Hvis jeg hadde hatt mer tid ville jeg jobbet mer med grafikken. Jeg hadde også lyst til å legge til Double Down siden det er en sentral del av blackjack, men jeg valgte å prioritere at selve spillogikken fungerte ordentlig først.
+Hvis jeg hadde hatt mer tid ville jeg jobbet mer med grafikken. Jeg hadde også lyst til å legge til Double Down siden det er en sentral del av blackjack, men jeg valgte å prioritere at selve spillogikken fungerte ordentlig først.
 
 
--  Det vanskeligste var definitivt ess-logikken. At et ess kan være verdt enten 1 eller 11 avhengig av hva som er best for hånden, var mye vanskeligere å kode enn jeg trodde. Å få koden til å skjønne akkurat når den skal bytte verdi tok en del prøving og feiling.
-
+Det vanskeligste var definitivt ess-logikken. At et ess kan være verdt enten 1 eller 11 avhengig av hva som er best for hånden, var mye vanskeligere å kode enn jeg trodde. Å få koden til å skjønne akkurat når den skal bytte verdi tok en del prøving og feiling.
 Det var også litt irriterende å få varselmeldingene til å vise seg på riktig tidspunkt. Problemet var at meldingen dukket opp før kortene hadde rukket å bli tegnet på skjermen. Løsningen ble å bruke setTimeout til å forsinke meldingen litt, slik at nettleseren fikk tid til å oppdatere det som vises først.
 
 ------------------------------------------------------------------------
 
 ## 8. Kildeliste
 
--   w3schools\
--   flask.palletsprojects.com
+-   w3schools
+-   Youtube
+-   AI (Brukt for feilløsning når man satt fast og for å forstå kode som man ikke var vant med)
+-   Codeacademy
